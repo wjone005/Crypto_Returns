@@ -32,7 +32,7 @@ Once the Flask app is running, navigate to the `localhost` link provided:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com\Crypto_returns\LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/wjone005/Crypto_Returns/blob/main/LICENSE) file for details.
 
 ## Future Features Currently Working On
 * Dockerize this project
