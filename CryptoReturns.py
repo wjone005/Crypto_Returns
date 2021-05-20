@@ -76,8 +76,11 @@ def home():
                         all_time_percentage_change="{:,.2f}".format(ath['ath_change_percentage']),
                         #sparkline=coin_gecko_sparkline['sparkline_in_7d']['price']
                         )
-            db.session.add(coin)
-            db.session.commit()
+            print(coin.crypto_name)
+            q = db.session.query(coin).filter(coin.name == coin_name)
+            #session.query(q.exists())
+            #db.session.add(coin)
+            #db.session.commit()
         except Exception as e:
             db.session.rollback()
             print('Failed to add coin')
