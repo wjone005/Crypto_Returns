@@ -60,23 +60,23 @@
                 <tr>
                     <td><img height= 70; width="auto" src="{{coin.image}}"></td> 
                     <td>{{coin.crypto_name}}</td>
-                    <td>{{coin.current_price}}</td>
-                    <td>{{coin.presale_price}}</td>
-                    <td style="color: chartreuse;">{{coin.multiple}}</td>
-                    <td>{{coin.coin_initial_invesment}}</td>
-                    <td>{{coin.profit}}</td>
+                    <td>${{coin.current_price}}</td>
+                    <td>${{coin.presale_price}}</td>
+                    <td style="color: chartreuse;">{{coin.multiple}}x</td>
+                    <td>${{coin.coin_initial_invesment}}</td>
+                    <td>${{coin.profit}}</td>
                     <td>{{coin.twenty_four_hour}}</td>
-                    <td>{{coin.all_time_high}}</td>
+                    <td>${{coin.all_time_high}}</td>
                     <td>{{coin.all_time_percentage_change}}</td>
                     <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
                     <td><input type="hidden" value="{{coin.crypto_name}}" name="coin"> <input class="btn btn-danger" type="submit" value="Delete"></td>
                 <!--<td>{{coin.crypto_name}}</td> --> 
                 </form>
-                <form method="POST" action="./update">
+                <!-- <form method="POST" action="./update">
                     <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
                     <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
                     <input type="submit" value="Update">
-                </form>
+                </form> -->
                 </tr>
                 {% endfor %}
             </tbody>
