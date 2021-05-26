@@ -14,6 +14,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 from decimal import *
 
+from sqlalchemy.sql import func
+
 cg = CoinGeckoAPI()
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
