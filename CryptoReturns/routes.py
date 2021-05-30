@@ -1,51 +1,19 @@
+from CryptoReturns import application, db
+from flask import Flask, render_template, redirect, request, flash
+from decimal import *
+from pycoingecko import CoinGeckoAPI
+from sqlalchemy.sql import func
+
+# Import data from models.py file
+from CryptoReturns.models import Coin
+
 import requests
 import json
 import os
 
-from pycoingecko import CoinGeckoAPI
-
-from flask import Flask
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import flash
-
-from flask_sqlalchemy import SQLAlchemy
-
-from decimal import *
-
-from sqlalchemy.sql import func
-
 cg = CoinGeckoAPI()
 
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = "sqlite:///{}".format(os.path.join(project_dir, "Coin_Database.db"))
-
-app = Flask(__name__)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = database_file
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SECRET_KEY'] = 'something only you know'
-
-db = SQLAlchemy(app)
-
-class Coin(db.Model):
-
-    crypto_name = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    image = db.Column(db.String(80), unique=False, nullable=True)
-    current_price = db.Column(db.Float(), unique=False, nullable=True)
-    presale_price = db.Column(db.Float(), unique=False, nullable=True)
-    multiple = db.Column(db.Float(), unique=False, nullable=True)
-    coin_initial_invesment = db.Column(db.Float(), unique=False, nullable=True)
-    profit = db.Column(db.Float(), unique=False, nullable=True)
-    twenty_four_hour = db.Column(db.Float(), unique=False, nullable=True)
-    all_time_high = db.Column(db.Float(), unique=False, nullable=True)
-    all_time_percentage_change = db.Column(db.Float(), unique=False, nullable=True)
-    sparkline = db.Column(db.String(80), unique=False, nullable=True)
-    def __repr__(self):
-        return "<Crypto_name: {}>".format(self.crypto_name)
-
-@app.route("/", methods=["GET", "POST"])
+@application.route("/", methods=["GET", "POST"])
 
 def home():
     coins = None
@@ -84,10 +52,27 @@ def home():
                         #sparkline=coin_gecko_sparkline['sparkline_in_7d']['price']
                         )
             #print(coin.crypto_name)
-            #q = db.session.query(coin).filter(coin.name == coin_name)
-            #session.query(q.exists())
+            duplicate_coin = Coin.query.filter_by(crypto_name=coin_gecko_name['name']).first()
+            
+            
+            # Check if the coin already exist
+            #if duplicate_coin == None:
+                #q = db.session.query(coin).filter(coin.crypto_name)
+                #session.query(q.exists())
             db.session.add(coin)
             db.session.commit()
+            
+            qry = db.session.query(func.max(coin.profit).label("profit"))
+            print(qry)
+            # Delete the coin and overwrite it with the new information
+            # Or maybe update the coin instead
+            """elif duplicate_coin != None:
+                #Coin.query.filter(Coin.id == 123).delete()
+                coin.crypto_name = coin_gecko_name['name']
+                coin.coin_initial_invesment=initial_investment
+                db.session.commit()
+                #db.session.delete()
+                print(coin.crypto_name + "Already exist!")"""
         except Exception as e:
             db.session.rollback()
             print('Failed to add coin')
@@ -96,23 +81,24 @@ def home():
             #flash(f"Could not find {coin_name}. Please enter {coin_name} full name.")
     coins = Coin.query.all()
     
+    
     return render_template("home.html", coins=coins)
 
-@app.route("/update", methods=["POST"])
+@application.route("/update", methods=["POST"])
 
 def update():
     newcrypto_name = request.form.get("newcrypto_name")
     oldcrypto_name = request.form.get("oldcrypto_name")
-    coin_name = newcrypto_name.lower().replace(" ", "-")
-    coin_gecko_name = cg.get_coins_markets(vs_currency='usd', ids=[coin_name.lower()], order='market_cap_desc', per_page='1', page='1', sparkline='false')[0]
+    #coin_name = newcrypto_name.lower().replace(" ", "-")
+    #coin_gecko_name = cg.get_coins_markets(vs_currency='usd', ids=[coin_name.lower()], order='market_cap_desc', per_page='1', page='1', sparkline='false')[0]
     
     
     coin = Coin.query.filter_by(crypto_name=oldcrypto_name).first()
-    coin.crypto_name = coin_gecko_name['name']
+    coin.crypto_name = newcrypto_name
     db.session.commit()
     return redirect("/")
 
-@app.route("/delete", methods=["POST"])
+@application.route("/delete", methods=["POST"])
 
 def delete():
     crypto_name = request.form.get("coin")
@@ -120,8 +106,3 @@ def delete():
     db.session.delete(coin)
     db.session.commit()
     return redirect("/")
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
