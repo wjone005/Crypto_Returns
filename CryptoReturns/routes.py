@@ -84,17 +84,17 @@ def home():
     
     return render_template("home.html", coins=coins)
 
-@application.route("/update", methods=["POST"])
+@application.route("/update", methods=["GET", "POST"])
 
 def update():
     newcrypto_name = request.form.get("newcrypto_name")
     oldcrypto_name = request.form.get("oldcrypto_name")
     #coin_name = newcrypto_name.lower().replace(" ", "-")
-    #coin_gecko_name = cg.get_coins_markets(vs_currency='usd', ids=[coin_name.lower()], order='market_cap_desc', per_page='1', page='1', sparkline='false')[0]
+    coin_gecko_name = cg.get_coins_markets(vs_currency='usd', ids=[newcrypto_name.lower().replace(" ", "-")], order='market_cap_desc', per_page='1', page='1', sparkline='false')[0]
     
     
     coin = Coin.query.filter_by(crypto_name=oldcrypto_name).first()
-    coin.crypto_name = newcrypto_name
+    coin.crypto_name = coin_gecko_name['name']
     db.session.commit()
     return redirect("/")
 
