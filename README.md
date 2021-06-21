@@ -2,7 +2,7 @@
 
 A Flask app that calculates your crypto currency returns based off your initial investment.
 
-![app demo](https://github.com/wjone005/Crypto_Returns/blob/main/CryptoReturns/static/images/website.gif)
+![app demo](https://github.com/wjone005/Crypto_Returns/blob/main/CryptoReturns/static/images/website_v2.gif)
 
 ## Installation
 1. Install Requirements 
