@@ -4,6 +4,7 @@ click==8.0.1
 Flask==2.0.1
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.0
+gunicorn==20.1.0
 idna==2.10
 importlib-metadata==4.3.1
 itsdangerous==2.0.1
@@ -16,3 +17,6 @@ typing-extensions==3.10.0.0
 urllib3==1.26.5
 Werkzeug==2.0.1
 zipp==3.4.1
+python-dotenv
+authlib>=0.14.1
+six
