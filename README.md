@@ -16,9 +16,9 @@ A Flask app that calculates your crypto currency returns based off your initial 
    export client_id=AUTH0_CLIENT_ID
    export client_secret=AUTH0_CLIENT_SECRET
    export api_base_url=AUTH0_DOMAIN
-   export access_token_url"AUTH0_ACCESS_TOKEN_URL
+   export access_token_url=AUTH0_ACCESS_TOKEN_URL
    export authorize_url=AUTH0_AUTHROIZE_URL
-   
+
    ```
    and add them with the following format KEY=environ.get("value")
 
