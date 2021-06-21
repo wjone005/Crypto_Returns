@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+    </head>
+    <body style="">
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a class="navbar-brand" href="#">
+                    <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQExfRH4mTXtjw/company-logo_200_200/0?e=2159024400&v=beta&t=TGKREAto_AsBc7u79FQi6KHnSxLrISm3FEMuJyfnQv4" width="30" height="30" alt="">
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li> -->
+                  </ul>
+                <div class="dropdown text-end">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{userinfo['picture']}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    {{userinfo['name']}}
+                  </a>
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </header>
+        <div class="container">
+            
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger" role="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}    
+    
+            <h4 style="text-align:center">This website is a work in progress, data is from CoinGecko</h4>
+            
+            <!-- <form method="POST">
+                {{ form.hidden_tag() }}
+                <dl>
+                    {{ form.name }}
+                    {{ form.intial_investment }}
+                    {{ form.coin_price }}
+                </dl>
+                <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+            </form> -->
+    
+            <form class="justify-content-center" action="/dashboard" method="POST">
+                {{ form.hidden_tag() }}
+            
+                
+                
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.intial_investment.label(class="form-control-label") }}
+                    {% if form.intial_investment.errors %}
+                        {{ form.intial_investment(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.intial_investment.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.intial_investment(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.coin_price.label(class="form-control-label") }}
+                    {% if form.coin_price.errors %}
+                        {{ form.coin_price(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.coin_price.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.coin_price(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            
+            </form> 
+            <!-- <pre>{{userinfo_pretty}}</pre> -->
+            
+            <!-- <form  method="POST" action="/">
+                <div class="col">
+                    <label for="title" class="form-label">Enter Coin Name:</label>
+                    <input type="text" name="coin" class="form-control" value="bitcoin">
+                </div>
+                <div class="col-auto">
+                    <label for="initial investment" class="form-label">Initial Investment</label>
+                    <input type="text" name="initial_investment" class="form-control" value="2500">
+                </div>
+                <div class="col-auto mb-3">
+                    <label for="presale price" class="form-label">Purchased Price Per Coin</label>
+                    <input type="text" name="presale_price" class="form-control" value="">
+                </div>
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form> -->
+    
+            <!-- <h1>Coins</h1> -->
+            <div class="row align-items-start">
+                <div class="col">
+                    <h1>Coins</h1>
+                </div>
+                
+                <div class="col">
+                    <h3 style="display: inline;">Networth:</h3>
+                    <p style="display: inline;">${{ value }}</p>
+                </div>
+            </div>
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Our Price</th>
+                        <th scope="col">Xs</th>
+                        <th scope="col">Initial</th>
+                        <th scope="col">Profit</th>
+                        <th scope="col">24h</th>
+                        <th scope="col">ATH</th>
+                        <th scope="col">% From ATH</th>
+                        <!-- <th>Last 7 Days</th> -->
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for coin in coins %}
+                    <form method="POST" action="./delete" style="display: inline">
+                        <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                    <tr>
+                        <td><img height= 70; width="auto" src="{{coin.image}}"></td> 
+                        <td>{{coin.crypto_name}}</td>
+                        <td>${{coin.current_price}}</td>
+                        <td>${{coin.presale_price}}</td>
+                        <td style="color: chartreuse;">{{coin.multiple}}x</td>
+                        <td>${{coin.coin_initial_invesment}}</td>
+                        <td>${{coin.profit}}</td>
+                        <td>{{coin.twenty_four_hour}}</td>
+                        <td>${{coin.all_time_high}}</td>
+                        <td>{{coin.all_time_percentage_change}}</td>
+                        <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
+                        <td><input type="hidden" value="{{coin.crypto_name}}" name="coin"> <input class="btn btn-danger" type="submit" value="Delete"></td>
+                    <!--<td>{{coin.crypto_name}}</td> --> 
+                    </form>
+                    <form method="POST" action="./update">
+                        <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
+                        <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
+                        <input type="submit" value="Update">
+                    </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    </body>
+</html>
