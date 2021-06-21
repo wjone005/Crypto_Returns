@@ -11,16 +11,18 @@ A Flask app that calculates your crypto currency returns based off your initial 
 
 2. Obtain an API Key for Auth0. Set the keys as an environment variable. Using the following format for macOS and Linux Distributions:
 
-export KEY=value
-export client_id=AUTH0_CLIENT_ID
-export client_secret=AUTH0_CLIENT_SECRET
-export api_base_url=AUTH0_DOMAIN
-export access_token_url"AUTH0_ACCESS_TOKEN_URL
-export authorize_url=AUTH0_AUTHROIZE_URL
+   ```
+   export KEY=value
+   export client_id=AUTH0_CLIENT_ID
+   export client_secret=AUTH0_CLIENT_SECRET
+   export api_base_url=AUTH0_DOMAIN
+   export access_token_url"AUTH0_ACCESS_TOKEN_URL
+   export authorize_url=AUTH0_AUTHROIZE_URL
+   
+   ```
+   and add them with the following format KEY=environ.get("value")
 
-and add them with the following format KEY=environ.get("value")
-
-If you are ever adding your own code to GitHub and choose to use a .env file, make sure it's listed under a .gitignore file. Therefore, it doesn't accidently get published to GitHub!
+   If you are ever adding your own code to GitHub and choose to use a .env file, make sure it's listed under a .gitignore file. Therefore, it doesn't accidently get published to GitHub!
 
 ## Usage
 #### To launch the app:
