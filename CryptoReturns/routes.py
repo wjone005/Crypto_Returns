@@ -167,6 +167,12 @@ def dashboard():
                            userinfo=session['profile'],
                            userinfo_pretty=json.dumps(session['jwt_payload'], indent=4)) """
 
+@application.route("/profile", methods=["GET", "POST"])
+#@requires_auth
+def profile():
+    return render_template("profile.html", userinfo=session['profile'], 
+                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+
 @application.route("/update", methods=["GET", "POST"])
 def update():
     newcrypto_name = request.form.get("newcrypto_name")
@@ -192,11 +198,6 @@ def delete():
     db.session.commit()
     
     return redirect("dashboard")
-
-@application.route("/profiles", methods=["GET", "POST"])
-@requires_auth
-def profile():
-    return render_template("profiles.html", userinfo=session['profile'], userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
 @application.route('/logout')
 def logout():
