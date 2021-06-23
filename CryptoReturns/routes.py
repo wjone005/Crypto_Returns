@@ -193,10 +193,10 @@ def delete():
     
     return redirect("dashboard")
 
-@application.route("/profile", methods=["GET", "POST"])
+@application.route("/profiles", methods=["GET", "POST"])
 @requires_auth
 def profile():
-    return render_template("profile.html", userinfo=session['profile'], userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+    return render_template("profiles.html", userinfo=session['profile'], userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
 @application.route('/logout')
 def logout():
