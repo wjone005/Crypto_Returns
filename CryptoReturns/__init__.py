@@ -6,7 +6,7 @@ from os import environ as env
 from flask_sqlalchemy import SQLAlchemy
 
 
-application = Flask(__name__)
+application = Flask(__name__, template_folder='templates')
 
 # Location where database will be and created
 # /// means relative path from current file
