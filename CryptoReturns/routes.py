@@ -169,10 +169,8 @@ def dashboard():
 @application.route("/profile", methods=["GET", "POST"])
 @requires_auth
 def profile():
-    return render_template('profile.html',
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
-
+    return "User email not available or not verified by Google.", 400
+    
 @application.route("/update", methods=["GET", "POST"])
 def update():
     newcrypto_name = request.form.get("newcrypto_name")
