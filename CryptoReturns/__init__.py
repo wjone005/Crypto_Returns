@@ -12,7 +12,7 @@ application = Flask(__name__)
 # /// means relative path from current file
 application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 application.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///site.db'
-application.config['SECRET_KEY'] = os.urandom(24)
+application.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 application.config['SESSION_COOKIE_SECURE'] = False
 
 # SQLAlchemy instance
