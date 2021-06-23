@@ -71,7 +71,7 @@ def callback_handling():
         'picture': userinfo['picture']
     }
 
-    return redirect('/dashboard')
+    return redirect('/profile')
 
 @application.route('/login')
 def login():
@@ -169,7 +169,7 @@ def dashboard():
 @application.route("/profile", methods=["GET", "POST"])
 @requires_auth
 def profile():
-    return render_template('profile.html',
+    return render_template('example.html',
                            userinfo=session['profile'],
                            userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
