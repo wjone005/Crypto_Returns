@@ -161,17 +161,16 @@ def dashboard():
     coin_profit = Coin.query.with_entities(func.sum(Coin.profit).label('total')).first().total
     if coin_profit is None:
         coin_profit = 0
-    return render_template("dashboard.html", coins=coins, value=coin_profit, form=form, name=session.get('name'), userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+    return render_template("dashboard.html", coins=coins, value=coin_profit, form=form, name=session.get('name'))
     """ return render_template('dashboard.html',
                            userinfo=session['profile'],
                            userinfo_pretty=json.dumps(session['jwt_payload'], indent=4)) """
 
 @application.route("/profile", methods=["GET", "POST"])
-#@requires_auth
+@requires_auth
 def profile():
-    return render_template("profile.html", userinfo=session['profile'], 
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+    return render_template("profile.html", userinfo_pretty=json.dumps(session['jwt_payload'], indent=4) ,
+                            userinfo=session['profile'])
 
 @application.route("/update", methods=["GET", "POST"])
 def update():
