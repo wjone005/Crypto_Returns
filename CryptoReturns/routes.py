@@ -168,7 +168,6 @@ def dashboard():
                            userinfo_pretty=json.dumps(session['jwt_payload'], indent=4)) """
 
 @application.route("/update", methods=["GET", "POST"])
-
 def update():
     newcrypto_name = request.form.get("newcrypto_name")
     oldcrypto_name = request.form.get("oldcrypto_name")
@@ -186,7 +185,6 @@ def update():
     return redirect("dashboard")
 
 @application.route("/delete", methods=["POST"])
-
 def delete():
     crypto_name = request.form.get("coin")
     coin = Coin.query.filter_by(crypto_name=crypto_name).first()
@@ -194,6 +192,11 @@ def delete():
     db.session.commit()
     
     return redirect("dashboard")
+
+@application.route("/profile", methods=["GET", "POST"])
+@requires_auth
+def profile():
+    return render_template("profile.html", userinfo=session['profile'], userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
 @application.route('/logout')
 def logout():
@@ -205,10 +208,3 @@ def logout():
     # Redirect user to logout endpoint
     params = {'returnTo': url_for('home', _external=True), 'client_id': 'm2kNjhXz5Y9ZSQed20pH38VSNvB7KeLH'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
-
-@application.route("/profile", methods=["GET", "POST"])
-@requires_auth
-def profile():
-    return render_template("profile.html",
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
