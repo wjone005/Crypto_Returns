@@ -169,8 +169,7 @@ def dashboard():
 @application.route("/profile", methods=["GET", "POST"])
 @requires_auth
 def profile():
-    return render_template("profile.html", userinfo_pretty=json.dumps(session['jwt_payload'], indent=4) ,
-                            userinfo=session['profile'])
+    return render_template("profile.html")
 
 @application.route("/update", methods=["GET", "POST"])
 def update():
