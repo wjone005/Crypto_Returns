@@ -16,6 +16,7 @@
                 <a class="navbar-brand" href="/dashboard#">
                     <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQExfRH4mTXtjw/company-logo_200_200/0?e=2159024400&v=beta&t=TGKREAto_AsBc7u79FQi6KHnSxLrISm3FEMuJyfnQv4" width="30" height="30" alt="">
                 </a>
+                <!-- <h4><a class="" href="/profile">Profile</a></h4> -->
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <!-- <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li> -->
                   </ul>
@@ -27,7 +28,7 @@
                   <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                   </ul>
@@ -48,6 +49,36 @@
                 <p style="display: inline; color:#657795;">Networth:</p>
                 <p style="display: inline;">${{ value }}</p>
             </div>
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Bitcoin</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Ethereum</h5>
+                        <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                        <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                      </div>
+                    </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Polkadot</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
             
             <!-- <form method="POST">
                 {{ form.hidden_tag() }}
@@ -64,7 +95,7 @@
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Coin</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -121,7 +152,7 @@
                 </div>
                 </div>
             </div>
-            <div class="card border border-2">
+            <div class="card border border-2" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                 <div class="card-body">
                     <div class="row align-items-start">
                         <div class="col">
@@ -139,59 +170,61 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-dark table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Our Price</th>
-                                <th scope="col">Xs</th>
-                                <th scope="col">Initial</th>
-                                <th scope="col">Profit</th>
-                                <th scope="col">24h</th>
-                                <th scope="col">ATH</th>
-                                <th scope="col">% From ATH</th>
-                                <!-- <th>Last 7 Days</th> -->
-                                <th style="text-align: center" scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for coin in coins %}
-                            <form method="POST" action="./delete" style="display: inline">
-                                <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                            <tr>
-                                <td><img height= 70; width="auto" src="{{coin.image}}"></td> 
-                                <td>{{coin.crypto_name}}</td>
-                                <td>${{coin.current_price}}</td>
-                                <td>${{coin.presale_price}}</td>
-                                <td style="color: chartreuse;">{{coin.multiple}}x</td>
-                                <td>${{coin.coin_initial_invesment}}</td>
-                                <td>${{coin.profit}}</td>
-                                <td>{{coin.twenty_four_hour}}</td>
-                                <td>${{coin.all_time_high}}</td>
-                                <td>{{coin.all_time_percentage_change}}</td>
-                                <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
-                                <td>
+                    <div class="table-responsive">
+                        <table class="table table-primary table-borderless table-striped">
+                            <thead>
+                                <tr class="">
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Our Price</th>
+                                    <th scope="col">Xs</th>
+                                    <th scope="col">Initial</th>
+                                    <th scope="col">Profit</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">ATH</th>
+                                    <th scope="col">% From ATH</th>
+                                    <!-- <th>Last 7 Days</th> -->
+                                    <th style="text-align: center" scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                {% for coin in coins %}
+                                <form method="POST" action="./delete" style="display: inline">
                                     <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                                    <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
-                                        Edit <i class="fas fa-edit font-12"></i>
-                                    </button>
-                                    <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
-                                        Delete <i class="fas fa-trash-alt font-16"></i>
-                                    </button>
-                                </td>
-                            <!--<td>{{coin.crypto_name}}</td> --> 
-                            </form>
-                            <!-- <form method="POST" action="./update">
-                                <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
-                                <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
-                                <input type="submit" value="Update">
-                            </form> -->
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                <tr class="table-light">
+                                    <td><img height= 70; width="auto" src="{{coin.image}}"></td> 
+                                    <td>{{coin.crypto_name}}</td>
+                                    <td>${{coin.current_price}}</td>
+                                    <td>${{coin.presale_price}}</td>
+                                    <td style="color: chartreuse;">{{coin.multiple}}x</td>
+                                    <td>${{coin.coin_initial_invesment}}</td>
+                                    <td>${{coin.profit}}</td>
+                                    <td>{{coin.twenty_four_hour}}</td>
+                                    <td>${{coin.all_time_high}}</td>
+                                    <td>{{coin.all_time_percentage_change}}</td>
+                                    <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
+                                    <td>
+                                        <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                        <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
+                                            Edit <i class="fas fa-edit font-12"></i>
+                                        </button>
+                                        <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
+                                            Delete <i class="fas fa-trash-alt font-16"></i>
+                                        </button>
+                                    </td>
+                                <!--<td>{{coin.crypto_name}}</td> --> 
+                                </form>
+                                <!-- <form method="POST" action="./update">
+                                    <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
+                                    <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
+                                    <input type="submit" value="Update">
+                                </form> -->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- <form class="justify-content-center" action="/dashboard" method="POST">

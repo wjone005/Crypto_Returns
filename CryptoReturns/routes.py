@@ -23,11 +23,11 @@ oauth = OAuth(application)
 
 auth0 = oauth.register(
     'auth0',
-    client_id='m2kNjhXz5Y9ZSQed20pH38VSNvB7KeLH',
-    client_secret= os.environ.get("AUTH0_CLIENT_SECRET"),
-    api_base_url='https://dev-3q4npqcu.us.auth0.com',
-    access_token_url='https://dev-3q4npqcu.us.auth0.com/oauth/token',
-    authorize_url='https://dev-3q4npqcu.us.auth0.com/authorize',
+    client_id=os.environ.get("AUTH0_CLIENT_ID"),
+    client_secret=os.environ.get("AUTH0_CLIENT_SECRET"),
+    api_base_url=os.environ.get("AUTH0_DOMAIN"),
+    access_token_url=os.environ.get("AUTH0_ACCESS_TOKEN_URL"),
+    authorize_url=os.environ.get("AUTH0_AUTHROIZE_URL"),
     client_kwargs={
         'scope': 'openid profile email',
     },
@@ -206,3 +206,9 @@ def logout():
     params = {'returnTo': url_for('home', _external=True), 'client_id': 'm2kNjhXz5Y9ZSQed20pH38VSNvB7KeLH'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
 
+@application.route("/profile", methods=["GET", "POST"])
+@requires_auth
+def profile():
+    return render_template('profile.html',
+                           userinfo=session['profile'],
+                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
