@@ -1,0 +1,307 @@
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+    </head>
+    <body>
+        <header class="p-3 mb-3 border-bottom" style="background-color:#ffffff">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a class="navbar-brand" href="/dashboard#">
+                    <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQExfRH4mTXtjw/company-logo_200_200/0?e=2159024400&v=beta&t=TGKREAto_AsBc7u79FQi6KHnSxLrISm3FEMuJyfnQv4" width="30" height="30" alt="">
+                </a>
+                <!-- <h4><a class="test" href="/profile">Profile</a></h4> -->
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li> -->
+                  </ul>
+                <div class="dropdown text-end">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{userinfo['picture']}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    {{userinfo['name']}}
+                  </a>
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                    <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </header>
+        <div class="container">
+            
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger" role="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}    
+    
+            <h4 style="text-align:center">Portfolio Overview</h4>
+            <div style="margin-bottom: 10px; text-align:center">
+                <p style="display: inline; color:#657795;">Networth:</p>
+                <p style="display: inline;">${{ value }}</p>
+            </div>
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Bitcoin</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Ethereum</h5>
+                        <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                        <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                      </div>
+                    </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Polkadot</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            <!-- <form method="POST">
+                {{ form.hidden_tag() }}
+                <dl>
+                    {{ form.name }}
+                    {{ form.intial_investment }}
+                    {{ form.coin_price }}
+                </dl>
+                <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+            </form> -->
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Coin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="justify-content-center" action="/dashboard" method="POST">
+                            {{ form.hidden_tag() }}
+                        
+                            
+                            
+                            <div class="form-group">
+                                {{ form.name.label(class="form-control-label") }}
+                                {% if form.name.errors %}
+                                    {{ form.name(class="form-control form-control-lg is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.name.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.name(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.intial_investment.label(class="form-control-label") }}
+                                {% if form.intial_investment.errors %}
+                                    {{ form.intial_investment(class="form-control form-control-lg is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.intial_investment.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.intial_investment(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.coin_price.label(class="form-control-label") }}
+                                {% if form.coin_price.errors %}
+                                    {{ form.coin_price(class="form-control form-control-lg is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.coin_price.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.coin_price(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="card border border-2" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <div class="card-body">
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <div class="col float-right">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary float-end" style="margin-bottom: 20px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    + Add a coin
+                                </button>
+                            </div>
+                            <div class="dt-buttons btn-group" style="margin-bottom: 10px;">
+                                <button class="btn btn-primary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> 
+                                <button class="btn btn-primary buttons-excel buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Excel</span></button> 
+                                <button class="btn btn-primary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> 
+                                <button class="btn btn-primary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true"><span>Hide columns</span></button> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-primary table-borderless table-striped">
+                            <thead>
+                                <tr class="">
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Our Price</th>
+                                    <th scope="col">Xs</th>
+                                    <th scope="col">Initial</th>
+                                    <th scope="col">Profit</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">ATH</th>
+                                    <th scope="col">% From ATH</th>
+                                    <!-- <th>Last 7 Days</th> -->
+                                    <th style="text-align: center" scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                {% for coin in coins %}
+                                <form method="POST" action="./delete" style="display: inline">
+                                    <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                <tr class="table-light">
+                                    <td><img height= 70; width="auto" src="{{coin.image}}"></td> 
+                                    <td>{{coin.crypto_name}}</td>
+                                    <td>${{coin.current_price}}</td>
+                                    <td>${{coin.presale_price}}</td>
+                                    <td style="color: chartreuse;">{{coin.multiple}}x</td>
+                                    <td>${{coin.coin_initial_invesment}}</td>
+                                    <td>${{coin.profit}}</td>
+                                    <td>{{coin.twenty_four_hour}}</td>
+                                    <td>${{coin.all_time_high}}</td>
+                                    <td>{{coin.all_time_percentage_change}}</td>
+                                    <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
+                                    <td>
+                                        <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                        <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
+                                            Edit <i class="fas fa-edit font-12"></i>
+                                        </button>
+                                        <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
+                                            Delete <i class="fas fa-trash-alt font-16"></i>
+                                        </button>
+                                    </td>
+                                <!--<td>{{coin.crypto_name}}</td> --> 
+                                </form>
+                                <!-- <form method="POST" action="./update">
+                                    <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
+                                    <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
+                                    <input type="submit" value="Update">
+                                </form> -->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- <form class="justify-content-center" action="/dashboard" method="POST">
+                {{ form.hidden_tag() }}
+            
+                
+                
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.intial_investment.label(class="form-control-label") }}
+                    {% if form.intial_investment.errors %}
+                        {{ form.intial_investment(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.intial_investment.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.intial_investment(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.coin_price.label(class="form-control-label") }}
+                    {% if form.coin_price.errors %}
+                        {{ form.coin_price(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.coin_price.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.coin_price(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            
+            </form> -->
+            
+            <!-- <pre>{{userinfo_pretty}}</pre> -->
+            
+            <!-- <form  method="POST" action="/">
+                <div class="col">
+                    <label for="title" class="form-label">Enter Coin Name:</label>
+                    <input type="text" name="coin" class="form-control" value="bitcoin">
+                </div>
+                <div class="col-auto">
+                    <label for="initial investment" class="form-label">Initial Investment</label>
+                    <input type="text" name="initial_investment" class="form-control" value="2500">
+                </div>
+                <div class="col-auto mb-3">
+                    <label for="presale price" class="form-label">Purchased Price Per Coin</label>
+                    <input type="text" name="presale_price" class="form-control" value="">
+                </div>
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form> -->
+    
+            <!-- <h1>Coinss</h1> -->
+            
+        </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/abd487df08.js" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
