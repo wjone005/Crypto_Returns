@@ -26,7 +26,7 @@
                     {{userinfo['name']}}
                   </a>
                   <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                    <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('Dashboard') }}">Dashboard</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                   </ul>
@@ -35,51 +35,15 @@
             </div>
         </header>
         <div class="container">
-            
-            {% for message in get_flashed_messages() %}
-                <div class="alert alert-danger" role="alert">
-                    <p>{{ message }}</p>
+            <div class="row">
+                <div class="col">
+                    <img class="avatar rounded-circle" width="300" height="300" src="https://s.gravatar.com/avatar/7f9f749612d81e1ed57b6c2b915ba1dc?s=480&amp;r=pg&amp;d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwi.png"/> 
                 </div>
-            {% endfor %}    
-    
-            <h4 style="text-align:center">Portfolio Overview</h4>
-            <div style="margin-bottom: 10px; text-align:center">
-                <p style="display: inline; color:#657795;">Networth:</p>
-                <p style="display: inline;">${{ value }}</p>
+                <div class="col">
+                    <h2>{{userinfo['name']}}</h2>
+                    <pre>{{userinfo_pretty}}</pre>
+                </div>
             </div>
-
-            <div class="row" style="margin-bottom: 20px;">
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Bitcoin</h5>
-                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Ethereum</h5>
-                        <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                        <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                      </div>
-                    </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Polkadot</h5>
-                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-            
-            
         </div>
         
 
