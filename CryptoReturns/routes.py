@@ -170,14 +170,7 @@ def dashboard():
 @requires_auth
 def profile():
     
-    return redirect(url_for('profile'))
-    
-@application.route("/example", methods=["GET", "POST"])
-@requires_auth
-def example():
-    return render_template("example.html",
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))                           
+    return render_template("profile.html")
 
 @application.route("/update", methods=["GET", "POST"])
 def update():
