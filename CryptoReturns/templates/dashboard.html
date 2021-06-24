@@ -203,6 +203,26 @@
                                     <td>{{coin.all_time_percentage_change}}</td>
                                     <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
                                     <td>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                                    <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
+                                                        Edit <i class="fas fa-edit font-12"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="POST" action="./update">
+                                                        <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
+                                                        <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
+                                                        <input type="submit" value="Update">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
                                         <input type="hidden" value="{{coin.crypto_name}}" name="coin">
                                         <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
                                             Edit <i class="fas fa-edit font-12"></i>
