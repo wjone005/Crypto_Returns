@@ -33,11 +33,11 @@ auth0 = oauth.register(
     },
 )
 
-@application.errorhandler(Exception)
+""" @application.errorhandler(Exception)
 def handle_auth_error(ex):
     response = jsonify(message=str(ex))
     response.status_code = (ex.code if isinstance(ex, HTTPException) else 500)
-    return response
+    return response """
 
 def requires_auth(f):
     @wraps(f)
@@ -170,7 +170,10 @@ def dashboard():
 @requires_auth
 def profile():
     
-    return render_template("profile.html")
+    return render_template("profile.html",
+                           userinfo=session['profile'],
+                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+
 
 @application.route("/update", methods=["GET", "POST"])
 def update():
