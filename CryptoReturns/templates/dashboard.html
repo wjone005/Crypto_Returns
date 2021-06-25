@@ -188,8 +188,6 @@
                             </thead>
                             <tbody class="">
                                 {% for coin in coins %}
-                                <form method="POST" action="./delete" style="display: inline">
-                                    <input type="hidden" value="{{coin.crypto_name}}" name="coin">
                                 <tr class="table-light">
                                     <td><img height= 40; width="auto" src="{{coin.image}}"></td> 
                                     <td>{{coin.crypto_name}}</td>
@@ -207,12 +205,14 @@
                                         <button style="display: inline" type="submit" value="Update" class="btn btn-secondary">
                                             Edit <i class="fas fa-edit font-12"></i>
                                         </button>
-                                        <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
-                                            Delete <i class="fas fa-trash-alt font-16"></i>
-                                        </button>
+                                        <form method="POST" action="./delete" style="display: inline">
+                                            <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                            <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
+                                                Delete <i class="fas fa-trash-alt font-16"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 <!--<td>{{coin.crypto_name}}</td> --> 
-                                </form>
                                 <!--<form method="POST" action="./update">
                                     <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
                                     <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
