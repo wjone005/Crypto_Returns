@@ -153,59 +153,6 @@
                 </div>
                 </div>
             </div>
-            <table id="coin_data" class="table table-primary table-borderless table-striped">
-                <thead>
-                    <tr class="">
-                        <th scope="col">Logo</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Our Price</th>
-                        <th scope="col">Xs</th>
-                        <th scope="col">Initial</th>
-                        <th scope="col">Profit</th>
-                        <th scope="col">24h</th>
-                        <th scope="col">ATH</th>
-                        <th scope="col">% From ATH</th>
-                        <!-- <th>Last 7 Days</th> -->
-                        <th style="text-align: center" scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="">
-                    {% for coin in coins %}
-                    <tr class="table-light">
-                        <td><img height= 40; width="auto" src="{{coin.image}}"></td> 
-                        <td>{{coin.crypto_name}}</td>
-                        <td>${{coin.current_price}}</td>
-                        <td>${{coin.presale_price}}</td>
-                        <td style="color: green;">{{coin.multiple}}x</td>
-                        <td>${{coin.coin_initial_invesment}}</td>
-                        <td>${{coin.profit}}</td>
-                        <td>{{coin.twenty_four_hour}}</td>
-                        <td>${{coin.all_time_high}}</td>
-                        <td>{{coin.all_time_percentage_change}}</td>
-                        <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
-                        <td>
-                            <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                            <button onclick="myFunction()" style="display: inline" type="submit" value="Update" class="btn btn-secondary">
-                                Edit <i class="fas fa-edit font-12"></i>
-                            </button>
-                            <form method="POST" action="./delete" style="display: inline">
-                                <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                                <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
-                                    Delete <i class="fas fa-trash-alt font-16"></i>
-                                </button>
-                            </form>
-                        </td>
-                    <!--<td>{{coin.crypto_name}}</td> --> 
-                    <!--<form method="POST" action="./update">
-                        <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
-                        <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
-                        <input type="submit" value="Update">
-                    </form>-->
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
             <div class="card border border-2" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                 <div class="card-body">
                     <div class="row align-items-start">
@@ -225,7 +172,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="coin__data" class="table table-primary table-borderless table-striped">
+                        <table id="coin_data" class="table table-primary table-borderless table-striped">
                             <thead>
                                 <tr class="">
                                     <th scope="col">Logo</th>
@@ -358,11 +305,11 @@
 
         
     
-        <!-- <script>
+        <script>
             function myFunction() {
               alert("This functionality is still being developed");
             }
-        </script> -->
+        </script>
                 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/abd487df08.js" crossorigin="anonymous"></script>
