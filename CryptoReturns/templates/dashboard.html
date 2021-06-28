@@ -8,7 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
         <!-- Bootstrap Data Tables -->
-        <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
 
         <title>Dashboard</title>
     </head>
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="data" class="">
+                        <table id="data" class="table table-primary table-borderless table-striped">
                             <thead>
                                 <tr class="">
                                     <th scope="col">Logo</th>
@@ -306,20 +306,7 @@
         {% block scripts %}
             <script>
                 $(document).ready(function () {
-                $('#data').DataTable({
-                    columns: [
-                    null,
-                    {searchable: false},
-                    {orderable: false, searchable: false},
-                    {orderable: false, searchable: false},
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,],
-                });
+                $('#data').DataTable();
                 });
             </script>
         {% endblock %}
@@ -328,10 +315,10 @@
               alert("This functionality is still being developed");
             }
         </script>
-            
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>    
+                
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/abd487df08.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
         
     </body>
 </html>
