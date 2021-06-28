@@ -204,10 +204,10 @@
                                     <td>{{coin.all_time_percentage_change}}</td>
                                     <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
                                     <td>
-                                        <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                        <!-- <input type="hidden" value="{{coin.crypto_name}}" name="coin">
                                         <button onclick="myFunction()" style="display: inline" type="submit" value="Update" class="btn btn-secondary">
                                             Edit <i class="fas fa-edit font-12"></i>
-                                        </button>
+                                        </button> -->
                                         <form method="POST" action="./delete" style="display: inline">
                                             <input type="hidden" value="{{coin.crypto_name}}" name="coin">
                                             <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
@@ -305,11 +305,11 @@
 
         
     
-        <script>
+        <!-- <script>
             function myFunction() {
               alert("This functionality is still being developed");
             }
-        </script>
+        </script> -->
                 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/abd487df08.js" crossorigin="anonymous"></script>
@@ -318,7 +318,20 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
         <script>
             $(document).ready(function() {
-                $('#coin_data').DataTable();
+                $('#coin_data').DataTable({
+                    columns: [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    {orderable: false, searchable: false}],
+                });
             } );
         </script>
         
