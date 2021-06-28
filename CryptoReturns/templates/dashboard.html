@@ -302,29 +302,6 @@
             
         </div>
         
-
-        <script>
-            $(document).ready(function() {
-                $('#coin_data').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ],
-                    columns: [
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    {orderable: false, searchable: false}],
-                });
-            } );
-        </script>
     
         <!-- <script>
             function myFunction() {
@@ -354,6 +331,6 @@
             } );
         </script>
         
-        {% block scripts %}{% endblock %}
+       
     </body>
 </html>
