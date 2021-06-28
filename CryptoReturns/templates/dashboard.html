@@ -36,7 +36,7 @@
                 var table = $('#coin_data').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        'copy', 'excel', 'pdf', 'print'
                     ],
                     columns: [
                     null,
@@ -96,47 +96,6 @@
                 <p style="display: inline; color:#657795;">Networth:</p>
                 <p style="display: inline;">${{ value }}</p>
             </div>
-
-            <div class="row" style="margin-bottom: 20px;">
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Bitcoin</h5>
-                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Ethereum</h5>
-                        <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                        <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                      </div>
-                    </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Polkadot</h5>
-                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
-                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-            <!-- <form method="POST">
-                {{ form.hidden_tag() }}
-                <dl>
-                    {{ form.name }}
-                    {{ form.intial_investment }}
-                    {{ form.coin_price }}
-                </dl>
-                <p><input type="submit" class="btn btn-primary" value="Submit"></p>
-            </form> -->
-            
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -199,6 +158,47 @@
                 </div>
                 </div>
             </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Bitcoin</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Ethereum</h5>
+                        <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                        <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                      </div>
+                    </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Polkadot</h5>
+                      <img src="https://www.coinapi.io/img/chart-sm.png" width="300" height="200">
+                      <!-- <a href="#" class="btn btn-primary">Enter a coin</a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            <!-- <form method="POST">
+                {{ form.hidden_tag() }}
+                <dl>
+                    {{ form.name }}
+                    {{ form.intial_investment }}
+                    {{ form.coin_price }}
+                </dl>
+                <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+            </form> -->
+            
+            
             <div class="card border border-2" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                 <div class="card-body">
                     <div class="row align-items-start">
