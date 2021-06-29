@@ -76,11 +76,11 @@ def callback_handling():
 
 @application.route('/login')
 def login():
-    return auth0.authorize_redirect(redirect_uri='https://crypto-returns.herokuapp.com/callback')
+    return auth0.authorize_redirect(redirect_uri=os.environ.get('AUTH0_CALLBACK_URL'))
 
 @application.route('/signup')
 def signup():
-    return auth0.authorize_redirect(redirect_uri='https://crypto-returns.herokuapp.com/callback')
+    return auth0.authorize_redirect(redirect_uri=os.environ.get('AUTH0_CALLBACK_URL'))
 
 @application.route("/dashboard", methods=["GET", "POST"])
 @requires_auth
