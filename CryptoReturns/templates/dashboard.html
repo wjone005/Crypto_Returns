@@ -16,7 +16,11 @@
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css"/>
 
-
+        <style>
+            .card-margin{
+	            margin-bottom: 100px;
+            }
+        </style>
 
 
         
@@ -165,84 +169,89 @@
                 </div>
                 </div>
             </div>
-            <div class="card border border-2" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) margin-bottom: 100">
-                <div class="card-body">
-                    <div class="row align-items-start">
-                        <div class="col">
-                            <div class="col float-right">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary float-end" style="margin-bottom: 20px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    + Add a coin
-                                </button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border border-2 card-margin" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                        <div class="card-body">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <div class="col float-right">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary float-end" style="margin-bottom: 20px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            + Add a coin
+                                        </button>
+                                    </div>
+                                    <div id="example" class="col-sm-12 col-md-6">
+        
+                                    </div>
+                                    <!-- <div class="dt-buttons btn-group" style="margin-bottom: 10px;">
+                                        <button class="btn btn-primary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> 
+                                        <button class="btn btn-primary buttons-excel buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Excel</span></button> 
+                                        <button class="btn btn-primary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> 
+                                        <button class="btn btn-primary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true"><span>Hide columns</span></button> 
+                                    </div> -->
+                                </div>
                             </div>
-                            <div id="example" class="col-sm-12 col-md-6">
-
+                            <div class="table-responsive">
+                                <table id="coin_data" class="table table-striped table-bordered nowrap" style="width:100%">
+                                    <thead>
+                                        <tr class="">
+                                            <th scope="col">Logo</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Our Price</th>
+                                            <th scope="col">Xs</th>
+                                            <th scope="col">Initial</th>
+                                            <th scope="col">Profit</th>
+                                            <th scope="col">24h</th>
+                                            <th scope="col">ATH</th>
+                                            <th scope="col">% From ATH</th>
+                                            <!-- <th>Last 7 Days</th> -->
+                                            <th style="text-align: center" scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        {% for coin in coins %}
+                                        <tr class="table-light">
+                                            <td><img height= 40; width="auto" src="{{coin.image}}"></td> 
+                                            <td>{{coin.crypto_name}}</td>
+                                            <td>${{coin.current_price}}</td>
+                                            <td>${{coin.presale_price}}</td>
+                                            <td style="color: green;">{{coin.multiple}}x</td>
+                                            <td>${{coin.coin_initial_invesment}}</td>
+                                            <td>${{coin.profit}}</td>
+                                            <td>{{coin.twenty_four_hour}}</td>
+                                            <td>${{coin.all_time_high}}</td>
+                                            <td>{{coin.all_time_percentage_change}}</td>
+                                            <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
+                                            <td>
+                                                <!-- <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                                <button onclick="myFunction()" style="display: inline" type="submit" value="Update" class="btn btn-secondary">
+                                                    Edit <i class="fas fa-edit font-12"></i>
+                                                </button> -->
+                                                <form method="POST" action="./delete" style="display: inline">
+                                                    <input type="hidden" value="{{coin.crypto_name}}" name="coin">
+                                                    <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
+                                                        Delete <i class="fas fa-trash-alt font-16"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        <!--<td>{{coin.crypto_name}}</td> --> 
+                                        <!--<form method="POST" action="./update">
+                                            <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
+                                            <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
+                                            <input type="submit" value="Update">
+                                        </form>-->
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
-                            <!-- <div class="dt-buttons btn-group" style="margin-bottom: 10px;">
-                                <button class="btn btn-primary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> 
-                                <button class="btn btn-primary buttons-excel buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Excel</span></button> 
-                                <button class="btn btn-primary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> 
-                                <button class="btn btn-primary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true"><span>Hide columns</span></button> 
-                            </div> -->
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table id="coin_data" class="table table-striped table-bordered nowrap" style="width:100%">
-                            <thead>
-                                <tr class="">
-                                    <th scope="col">Logo</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Our Price</th>
-                                    <th scope="col">Xs</th>
-                                    <th scope="col">Initial</th>
-                                    <th scope="col">Profit</th>
-                                    <th scope="col">24h</th>
-                                    <th scope="col">ATH</th>
-                                    <th scope="col">% From ATH</th>
-                                    <!-- <th>Last 7 Days</th> -->
-                                    <th style="text-align: center" scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="">
-                                {% for coin in coins %}
-                                <tr class="table-light">
-                                    <td><img height= 40; width="auto" src="{{coin.image}}"></td> 
-                                    <td>{{coin.crypto_name}}</td>
-                                    <td>${{coin.current_price}}</td>
-                                    <td>${{coin.presale_price}}</td>
-                                    <td style="color: green;">{{coin.multiple}}x</td>
-                                    <td>${{coin.coin_initial_invesment}}</td>
-                                    <td>${{coin.profit}}</td>
-                                    <td>{{coin.twenty_four_hour}}</td>
-                                    <td>${{coin.all_time_high}}</td>
-                                    <td>{{coin.all_time_percentage_change}}</td>
-                                    <!-- <td><img height= 100; src="{{coin.sparkline}}"></td> -->
-                                    <td>
-                                        <!-- <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                                        <button onclick="myFunction()" style="display: inline" type="submit" value="Update" class="btn btn-secondary">
-                                            Edit <i class="fas fa-edit font-12"></i>
-                                        </button> -->
-                                        <form method="POST" action="./delete" style="display: inline">
-                                            <input type="hidden" value="{{coin.crypto_name}}" name="coin">
-                                            <button style="display: inline" type="submit" value="Delete" class="btn btn-danger">
-                                                Delete <i class="fas fa-trash-alt font-16"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                <!--<td>{{coin.crypto_name}}</td> --> 
-                                <!--<form method="POST" action="./update">
-                                    <input type="hidden" value="{{coin.crypto_name}}" name="oldcrypto_name" value="Test">
-                                    <input type="text" value="{{coin.crypto_name}}" name="newcrypto_name">
-                                    <input type="submit" value="Update">
-                                </form>-->
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
+            
             <!-- <form class="justify-content-center" action="/dashboard" method="POST">
                 {{ form.hidden_tag() }}
             
@@ -317,6 +326,7 @@
             
         </div>
         
+        
     
         <!-- <script>
             function myFunction() {
@@ -353,18 +363,21 @@
         <script>
             $(document).ready(function() {
                 var table = $('#coin_data').DataTable({
-                    columns: [
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    {orderable: false, searchable: false}],
+                    columnDefs : [
+                        { targets: 0, sortable: false},
+                        { targets: 1, sortable: true},
+                        { targets: 2, sortable: true},
+                        { targets: 3, sortable: true},
+                        { targets: 4, sortable: true},
+                        { targets: 5, sortable: true},
+                        { targets: 6, sortable: true},
+                        { targets: 7, sortable: true},
+                        { targets: 8, sortable: true},
+                        { targets: 9, sortable: true},
+                        { targets: 10, sortable: false}
+                    ],
+                    // This disables the arrows from the 1st column
+                    order: [[ 1, "asc" ]],
                     lengthChange: false,
                     buttons: [
                         'copy', 'excel', 'pdf'
