@@ -1,6 +1,7 @@
 from CryptoReturns import db
 
 class Coin(db.Model):
+    __tablename__ = 'users'
     # id will allow duplicate coins. In the future allow new coins to replace existing coin in database maybe.
     id = db.Column(db.Integer, primary_key=True)
     crypto_name = db.Column(db.String(80), unique=False, nullable=False)
