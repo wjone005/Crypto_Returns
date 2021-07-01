@@ -1,7 +1,7 @@
 from CryptoReturns import db
 
 class Coin(db.Model):
-    __tablename__ = 'users'
+    #__tablename__ = 'users'
     # id will allow duplicate coins. In the future allow new coins to replace existing coin in database maybe.
     id = db.Column(db.Integer, primary_key=True)
     crypto_name = db.Column(db.String(80), unique=False, nullable=False)
@@ -15,5 +15,6 @@ class Coin(db.Model):
     all_time_high = db.Column(db.Float(), unique=False, nullable=True)
     all_time_percentage_change = db.Column(db.Float(), unique=False, nullable=True)
     sparkline = db.Column(db.String(80), unique=False, nullable=True)
+    
     def __repr__(self):
         return "<Crypto_name: {}>".format(self.crypto_name)
