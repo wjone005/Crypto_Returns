@@ -71,7 +71,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-
+    print(type(userinfo['user_id']))
     return redirect('/dashboard')
 
 @application.route('/login')
