@@ -157,7 +157,7 @@
                                         {% endfor %}
                                     </div>
                                 {% else %}
-                                    {{ form.coin_price(class="form-control form-control-lg") }}
+                                    {{ form.coin_price(class="form-control form-control-lg" name="field" id="field") }}
                                 {% endif %}
                             </div>
                             <div class="modal-footer">
@@ -360,6 +360,21 @@
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
         <!--<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
         
+        <!--Form Validation-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script>
+
+        <script>
+            jQuery.validator.setDefaults({
+                rules: {
+                    field: {
+                        required: true,
+                        number:true
+                    }
+                }
+            })
+        </script>
+
         <script>
             $(document).ready(function() {
                 var table = $('#coin_data').DataTable({

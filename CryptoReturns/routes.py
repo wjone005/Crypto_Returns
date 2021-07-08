@@ -8,11 +8,12 @@ from functools import wraps
 from werkzeug.exceptions import HTTPException
 from six.moves.urllib.parse import urlencode
 from authlib.integrations.flask_client import OAuth
+from webargs import fields
 
 
 
 # Import data from models.py file
-from CryptoReturns.models import Coin
+from CryptoReturns.models import Coin, User
 
 import requests
 import json
@@ -71,6 +72,15 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
+
+    # Store the user information in database
+
+    user = User (
+        name = userinfo['name'],
+        email = userinfo['email'],
+        picture = userinfo['picture']
+    )
+
     
     return redirect('/dashboard')
 
