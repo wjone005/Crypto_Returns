@@ -157,7 +157,7 @@
                                         {% endfor %}
                                     </div>
                                 {% else %}
-                                    {{ form.coin_price(class="form-control form-control-lg" name="field" id="field") }}
+                                    {{ form.coin_price(class="form-control form-control-lg", name="price", id="price") }}
                                 {% endif %}
                             </div>
                             <div class="modal-footer">
@@ -367,7 +367,7 @@
         <script>
             jQuery.validator.setDefaults({
                 rules: {
-                    field: {
+                    price: {
                         required: true,
                         number:true
                     }
