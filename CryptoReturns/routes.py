@@ -71,16 +71,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-
-    # Store the user information in database
-
-    user = User (
-        name = userinfo['name'],
-        email = userinfo['email'],
-        picture = userinfo['picture']
-    )
-
-    
+ 
     return redirect('/dashboard')
 
 @application.route('/login')
