@@ -71,7 +71,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
- 
+    
     return redirect('/dashboard')
 
 @application.route('/login')
@@ -89,7 +89,7 @@ def dashboard():
     coins = None
     #print(form.submit.data)
     print('------ {0}'.format(request.form))
-    print(form.errors)
+    print(form.errors, "Test")
     
     # The form validates regardless if it's True or False weird.
     if form.validate_on_submit():
