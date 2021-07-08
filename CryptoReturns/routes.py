@@ -12,7 +12,7 @@ from authlib.integrations.flask_client import OAuth
 
 
 # Import data from models.py file
-from CryptoReturns.models import Coin, User
+from CryptoReturns.models import Coin
 
 import requests
 import json

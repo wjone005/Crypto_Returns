@@ -1,6 +1,6 @@
 from CryptoReturns import db
 
-class User(db.Model):
+"""class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     email = db.Column(db.String(120), unique=True)
@@ -9,6 +9,7 @@ class User(db.Model):
 
     def __repr__(self):
         return "Name: {}>".format(self.name)
+"""
 
 class Coin(db.Model):
     #__tablename__ = 'users'
