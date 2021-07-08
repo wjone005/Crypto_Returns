@@ -8,7 +8,6 @@ from functools import wraps
 from werkzeug.exceptions import HTTPException
 from six.moves.urllib.parse import urlencode
 from authlib.integrations.flask_client import OAuth
-from webargs import fields
 
 
 
