@@ -25,7 +25,7 @@ class Coin(db.Model):
     all_time_high = db.Column(db.Float(), unique=False, nullable=True)
     all_time_percentage_change = db.Column(db.Float(), unique=False, nullable=True)
     sparkline = db.Column(db.String(80), unique=False, nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
     
     def __repr__(self):
         return "<Crypto_name: {}>".format(self.crypto_name)
