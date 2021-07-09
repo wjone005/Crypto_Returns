@@ -398,8 +398,13 @@
         <script>
             $(function() {
                 $("#myform").validate({
+                    errorClass: "alert alert-danger",
                     rules: {
                         coin_price: {
+                            required: true,
+                            number:true
+                        },
+                        intial_investment: {
                             required: true,
                             number:true
                         }
