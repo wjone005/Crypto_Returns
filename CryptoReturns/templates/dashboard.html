@@ -116,7 +116,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="justify-content-center" action="/dashboard" method="POST">
+                        <form id="myform" class="justify-content-center" action="/dashboard" method="POST">
                             {{ form.hidden_tag() }}
                         
                             
@@ -366,13 +366,18 @@
 
         <script>
             jQuery.validator.setDefaults({
+                debug: true,
+                success: "valid"
+            });
+            $("#myform").validate({
                 rules: {
                     coin_price: {
                         required: true,
                         number:true
                     }
                 }
-            })
+            });
+
         </script>
 
         <script>
