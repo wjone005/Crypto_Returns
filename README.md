@@ -5,7 +5,8 @@ A Flask app that calculates your crypto currency returns based off your initial 
 ![app demo](https://github.com/wjone005/Crypto_Returns/blob/masterbranch/CryptoReturns/static/images/website_v2.gif)
 
 ## Installation
-1. Install Requirements 
+1. Installation and Setup Instructions
+
 
     ```$ pip3 install -r requirements.txt (Python 3)```
 
@@ -32,6 +33,8 @@ Once the Flask app is running, navigate to the `localhost` link provided:
 
 <code> * Running on <b>https://127.0.0.1:5000/</b> (Press CTRL+C to quit)</code>
 
+## Live Demo
+* [Coin Metrics](http://crypto-returns.herokuapp.com)
 
 ## Special Thanks
 
